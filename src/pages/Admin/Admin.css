@@ -1,0 +1,74 @@
+.container .hasnocontent {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*1.1547); 
+  display: inline-block;
+  font-size: initial;
+  background-image: url('/images/polygon.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: calc(var(--m) - var(--s)*0.2885);
+}
+
+.container .hascontent:hover {
+  transform: scale(1.06);
+  transition: transform 500ms;
+  cursor: pointer;
+}
+
+.container .hascontent {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*1.1547); 
+  display: inline-block;
+  font-size: initial;
+  background-image: url('/images/basepiece.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-bottom: calc(var(--m) - var(--s)*0.2885);
+}
+
+.container::before {
+  content: "";
+  width: calc(var(--s)/2 + var(--m));
+  float: left;
+  height: 120%;
+  shape-outside: repeating-linear-gradient(     
+                   #0000 0 calc(var(--f) - 3px),      
+                   #000  0 var(--f));
+}
+
+.itemicon {
+  top: 100px;
+  right: 60%;
+  position: absolute;
+}
+
+.itemtext {
+  width: 100%;
+  text-align: center;
+  margin-top: 195px;
+  font-size: 2rem;
+  color: #555;
+  font-weight: 700;
+  position: absolute;
+}
+
+@media screen and (max-width: 1536px) {
+  .itemicon {
+    top: 90px;
+  }
+
+  .itemicon svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .itemtext {
+    margin-top: 165px;
+    font-size: 22px;
+  }
+}

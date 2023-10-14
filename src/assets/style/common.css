@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  unicode-range: U+AC00-D7A3; /* 한글만 pretendard 적용 */
+}
+
+:root {
+  /* 컬러 */
+  --primary-color: #ffc74c;
+  --primary-color-effect: #ffd374;
+
+  --border-color-light: #d1d1d1;
+  --border-color-default: #cccccc;
+  --border-color-dark: #b8b8b8;
+
+  --base-color-light: #f1f1f1;
+  --base-color-mid: #f8f8f8;
+  --base-color-dark: #e8e8e8;
+
+  --success-color: #059669;
+  --success-color-light: #5ceab7;
+  --error-color: #f54336;
+  --error-color-light: #f87b72;
+  --warning-color: #f3b921;
+  --warning-color-light: #ffdd87;
+  --info-color: #3460dc;
+  --info-color-light: #7ba7fd;
+  --disabled-color: #f1f1f1;
+
+  --font-color-default: #000000;
+  --font-color-dark: #1c1c1c;
+  --font-color-mid: #707070;
+  --font-color-sub: #939393;
+  --font-color-light: #adadad;
+
+  /* 폰트 (맨밑 반응형에서도 수정됨) */
+  --font-size-xxx-large: 3.2rem;
+  --font-size-xx-large: 2.4rem;
+  --font-size-x-large: 2rem;
+  --font-size-large: 1.8rem;
+  --font-size-mid: 1.6rem;
+  --font-size-small: 1.4rem;
+  --font-size-x-small: 1.2rem;
+
+  --font-w-thin: 100;
+  --font-w-light: 300;
+  --font-w-regular: 400;
+  --font-w-mid: 500;
+  --font-w-semi: 600;
+  --font-w-bold: 700;
+  --font-w-black: 900;
+
+  /* 사이즈 */
+  --border-radius-small: 0.8rem; /* 레디우스 크기 조정 (소) */
+  --border-radius-mid: 1.2rem; /* 레디우스 크기 조정 (중) */
+  --border-radius-large: 1.6rem; /* 레디우스 크기 조정 (대) */
+  --border-radius-full: 1000px; /* 레디우스 크기 조정 (100%) */
+
+  /* 여백 */
+  --space-small: 1.6rem;
+  --space-mid: 2rem;
+  --space-large: 2.5rem;
+  --space-larger: 3rem;
+
+  /* box-shadow */
+  --box-shadow01: rgba(185, 185, 185, 0.25) 6px 10px 30px 0px; /* 연함 */
+  --box-shadow02: rgba(0, 0, 0, 0.15) 4px 4px 12px 0px; /* 비교적 진함 */
+  --box-shadow03: rgba(0, 0, 0, 0.1) 2px 2px 12px 0px; /* 비교적 진하고 좁음 */
+
+  /* transition */
+  --transition-faster: 0.05s;
+  --transition-fast: 0.12s;
+  --transition-default: 0.2s;
+  --transition-slow: 0.3s;
+  --transition-slower: 0.5s;
+
+  /* 기타 효과 변수 */
+  --loading-color: #eeeeee; /* 이미지 로딩 전 배경색 */
+  --effect-color: #fefaed; /* 호버 등의 배경 효과 */
+  --filter-color: rgba(0, 0, 0, 0.6);
+
+  /* 계산 목적 변수 */
+  --header-height: 8rem;
+  --sidebar-width: 100px;
+  --min-width: 280px;
+  --max-width: 1360px;
+
+  /* grid item size */
+  --s: 263px; /* size  */
+  --sv: 140px; /* size vertical */
+  --m: 0.5rem; /* margin */
+  --nm: 0px;
+  --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    --sidebar-width: 0px; /* 단위 빼면 calc()에서 에러남 */
+  }
+}
+
+@media screen and (max-width: 1536px) {
+  :root {
+    --s: 200px; /* size  */
+    --sv: 140px; /* size vertical */
+    --m: 0.4rem; /* margin */
+    --nm: 0px;
+    --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  :root {
+    --s: 197px; /* size  */
+    --sv: 140px; /* size vertical */
+    --m: 0.4rem; /* margin */
+    --nm: 0px;
+    --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --s: 160px; /* size  */
+    --sv: 140px; /* size vertical */
+    --m: 0.2rem; /* margin */
+    --nm: 0px;
+    --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+  }
+}
+
+/* ----------- 기본 reset START ----------- */
+html {
+  font-size: 10px;
+  /*scrollbar-width: thin;  !* firefox *!*/
+  /*scrollbar-color: #ccc transparent;  !* firefox *!*/
+}
+::-webkit-scrollbar {
+  width: 8px;
+  /*height: 6px;*/
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: #ccc;
+}
+body {
+  color: var(--font-color-default);
+  font-size: var(--font-size-mid);
+  font-weight: var(--font-w-regular);
+  font-family: 'Pretendard', 'Poppins', sans-serif;
+  scrollbar-color: #ccc var(--base-color-light); /* firefox */
+}
+body::-webkit-scrollbar {
+  background: var(--base-color-light);
+}
+::placeholder {
+  color: var(--font-color-sub);
+  user-select: none;
+}
+[placeholder] {
+  text-overflow: ellipsis;
+}
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  user-select: none;
+}
+textarea,
+input {
+  border: 1px solid var(--border-color-default);
+  background: none;
+  outline: none;
+}
+input {
+  accent-color: var(--primary-color);
+}
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='number'],
+input[type='password'] {
+  padding: 0.5em 1em;
+  width: 100%;
+  border-radius: var(--border-radius-large);
+}
+textarea {
+  border-radius: var(--border-radius-large);
+  padding: 1em;
+  resize: none;
+}
+label {
+  cursor: pointer;
+}
+select {
+  padding: 0.5em 1em;
+  padding-right: 2.5em;
+  border-radius: var(--border-radius-large);
+  border: 1px solid var(--border-color-light);
+  background: url('../image/common/icon/arrow_down.svg') no-repeat right 0.8em
+    center / 1.2em; /* todo: select 를 없애거나 이 부분 없애서 경고 문구 안 보이게 하기*/
+  font-size: inherit;
+  color: var(--font-color-default);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+summary {
+  list-style: none;
+  padding-right: 2rem;
+  position: relative;
+  outline: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  display: block;
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 0.15rem solid currentColor;
+  border-bottom: 0.15rem solid currentColor;
+  transition: var(--transition-faster);
+}
+details[open] summary::after {
+  transform: translate(-50%, -50%) rotate(225deg);
+}
+/* ----------- 기본 reset END ----------- */
+
+/* ----------- style START ----------- */
+/* layout style 시작 */
+.c_section_title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-xx-large);
+  font-weight: var(--font-w-semi);
+}
+/* layout style 끝 */
+
+/* util성 css 시작 */
+.c_overflow_hidden {
+  overflow: hidden;
+}
+/* util성 css 끝 */
+
+/* c_btn 시작 */
+[class*='c_btn'] {
+  position: relative;
+  padding: 0.5em 1em;
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--border-radius-large);
+  transition: var(--transition-default);
+}
+.c_btn-primary {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  color: #000;
+}
+.c_btn-primary:hover {
+  border-color: var(--primary-color-effect);
+  background: var(--primary-color-effect);
+}
+.c_btn-line-primary {
+  border-color: var(--primary-color);
+  color: #000;
+}
+.c_btn-line-primary:hover {
+  border-color: var(--primary-color-effect);
+}
+/* c_btn 끝 */
+/* ----------- style END ----------- */
+
+/* ----------- transition & animation 시작 ----------- */
+/* @keyframes c_spining {
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+/* ----------- transition & animation 끝 ----------- */
+
+/* ----------- 폰트 반응형 START ----------- */
+/* 데스크탑XL */
+@media screen and (min-width: 1441px) {
+  html {
+    font-size: 11px;
+  }
+  :root {
+    /* --font-size-xxx-large: 3.2rem;
+    --font-size-xx-large: 2.4rem; */
+    --font-size-xxx-large: 3rem;
+    --font-size-xx-large: 2.3rem;
+  }
+}
+/* 데스크탑L */
+/* @media screen and (max-width: 1440px) {
+} */
+/* 데스크탑M */
+/* @media screen and (max-width: 1200px) {
+} */
+/* 태블릿 */
+/* @media screen and (max-width: 1024px) {
+} */
+/* 모바일L */
+@media screen and (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+  }
+}
+/* 모바일M */
+/* @media screen and (max-width: 600px) {
+	html {
+    font-size: 9px;
+	}
+} */
+/* 모바일S */
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 9px;
+  }
+  :root {
+    /* --font-size-small: 1.4rem;
+    --font-size-x-small: 1.2rem; */
+    --font-size-small: 1.45rem;
+    --font-size-x-small: 1.3rem;
+  }
+}
+/* 모바일XS (Galaxy Fold) */
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 8px;
+  }
+}
+/* ----------- 폰트 반응형 END ----------- */
+
+* {
+  scroll-margin-top: 88px;
+}
